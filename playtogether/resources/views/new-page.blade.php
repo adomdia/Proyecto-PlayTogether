@@ -128,7 +128,7 @@
       </div>
     </section>
     <div class="container-fluid justify-content-center d-flex align-items-sm-center">
-    <a href={{route('crear')}}><button class="btn-crear">Crear</button></a>
+    <button class="btn-crear">Crear</button>
     </div>
   </div>
 

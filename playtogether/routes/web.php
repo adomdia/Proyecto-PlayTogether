@@ -21,9 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/prueba', [App\Http\Controllers\PruebaController::class, 'index'])->name('prueba');
-Route::get('/config', [App\Http\Controllers\COnfigController::class, 'index'])->name('config');
+Route::get('/config', [App\Http\Controllers\ConfigController::class, 'index'])->name('config');
+Route::get('/crear', [App\Http\Controllers\CrearController::class, 'index'])->name('crear');
 
 
 Auth::routes();
-
-
