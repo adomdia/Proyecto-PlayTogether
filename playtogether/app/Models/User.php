@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'l_name',
         'email',
+        'foto',
         'password',
     ];
 
@@ -42,4 +43,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function publicaciones(){
+        return $this->hasMany(Publicaciones::class, 'id');
+    }
+
+    public function amistad(){
+        return $this->belongsToMany(Amistad::class, 'id');
+    }
 }

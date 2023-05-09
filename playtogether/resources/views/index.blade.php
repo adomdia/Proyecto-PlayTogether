@@ -3,7 +3,7 @@
 @section('content')
 <video class="video-inicio" src={{asset("/videos/fondologin.mp4")}} type="video/mp4" muted autoplay loop >
       </video>
-<div class="container mt-5 py-5" style="margin:150px auto">
+<div class="container   py-5" style="margin:150px auto">
     <div class="row w-75 position-absolute top-50 start-50 translate-middle formularios-log">
         <div class="col-md-6  mb-5">
             <div class="card">

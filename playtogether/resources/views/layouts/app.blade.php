@@ -4,7 +4,9 @@
 
 <body>
 @include('layouts.header')
+
 @yield('content')
 
 </body>
 </html>
+@yield('javascript')

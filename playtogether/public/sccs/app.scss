@@ -1453,19 +1453,10 @@ dialog::backdrop{
   }
 
 
+  //PUBLICACION FOTO
 
   .img-modal {
     display: block;
-    left: 5vw;
-  }
-
-  @media only screen and (min-width: 730px) {
-    .img-modal {
-      width: fit-content;
-      position: relative;
-      left: 10vw
-  }
-
   }
 
   .img-modal .modal-dialog {
@@ -1507,7 +1498,6 @@ dialog::backdrop{
       -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
       transform: translateY(-50%);
-
   }
 
   .img-modal .img-modal-btn {
@@ -1643,13 +1633,14 @@ dialog::backdrop{
   }
 
   @media screen and (max-width : 700px) {
-    .modal{
-      left: 88px !important;
+    .img-modal .modal-dialog{
+      left: 21vw;
     }
 
-    .img-modal .modal-dialog{
-      left: 0vw;
-
+  }
+  @media screen and (min-width : 412px) {
+    .modal .img-modal{
+      width: fit-content !important;
     }
 
   }

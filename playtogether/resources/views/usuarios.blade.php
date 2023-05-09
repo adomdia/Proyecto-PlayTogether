@@ -3,47 +3,57 @@
 
 @section('content')
 
-@if ($user->email === 'admin@admin.com')
-
 <div class="home">
-        <div class="titulo">
-          <span class="text nav-text">Estás en la vista de administrador, pulsa el siguiente botón para continuar con la administración de la página.</span>
-          <div class="container-fluid justify-content-center d-flex align-items-sm-center">
-            <a href={{route('indexadministrar')}}><button class="btn-crear">Continuar</button></a>
-          </div>
-        </div>
-</div>
+
+  <div class="titulo">
+    <span class="text nav-text">Solicitudes de amistad:</span>
+  </div>
 
 
-@else
-<div class="home">
+
+
+
+
     <!--SLIDER INICIO-->
+  <div class="titulo">
+    <span class="text nav-text">Encuentra gente en tu circulo:</span>
+  </div>
     <section class="fotos">
       <i class="bx bx-chevron-left arrow left"></i>
       <button class="pre-btn"></button>
       <i class="bx bx-chevron-right arrow right"></i>
       <button class="nxt-btn"></button>
       <div class="fotos-container">
-        <div class="fotos-card">
-          <div class="fotos-image">
-            <a href="media/img/user1.jpg">
-              <picture>
-                <img src="img/user0.jpg" class="fotos-thumb" alt="user1">
-              </picture>
-            </a>
-          </div>
-          <div class="fotos-info">
-            <div class="fotos-header">
-              <h2 class="fotos-user">USER1 </h2>
-              <div class="fotos-icon">
-                <i class='bx bx-heart like'></i>
-                <i class='bx bx-comment-dots comment'></i>
+        @foreach ($usuarios as $usuario)
+          @if($usuario->id != $user->id)
+            <div class="fotos-card">
+              <div class="fotos-image">
+                <a href="media/img/user1.jpg">
+                  <picture>
+                    <img src="img/user0.jpg" class="fotos-thumb" alt="user1">
+                  </picture>
+                </a>
+              </div>
+              <div class="fotos-info">
+                <div class="fotos-header">
+                  <h2 class="fotos-user">{{$usuario->name}} </h2>
+                </div>
+                <p class="fotos-short-description">ASASDASDASDASDASDASDAS</p>
+                <div class="button">
+                  <form method="post" action="{{route('crearsolicitud')}}">
+                   @csrf
+                    <input type="hidden" name="user_1" value="{{ $user->id}}">
+                    <input type="hidden" name="user_2" value="{{ $usuario->id }}">
+                    <button type="summit" class="btn btn-primary" style="border-color: #2d2196; background-color: #2d2196; color: #fff">Añadir amigo</a>
+
+
+                  </form>
+                </div>
               </div>
             </div>
-            <p class="fotos-short-description">ASASDASDASDASDASDASDAS</p>
-          </div>
-        </div>
-        <div class="fotos-card">
+          @endif
+        @endforeach
+        <!-- <div class="fotos-card">
           <div class="fotos-image">
             <a href="media/img/user2.jpg">
               <picture>
@@ -137,12 +147,10 @@
             </div>
             <p class="fotos-short-description">ASASDASDASDASDASDASDAS</p>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
-    <div class="container-fluid justify-content-center d-flex align-items-sm-center">
-    <a href={{route('crear')}}><button class="btn-crear">Crear</button></a>
-    </div>
+
   </div>
 
 <!-- <div class="container position-absolute top-50 start-50 translate-middle">
@@ -164,5 +172,4 @@
         </div>
     </div>
 </div> -->
-@endif
 @endsection

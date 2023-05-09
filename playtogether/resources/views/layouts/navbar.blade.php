@@ -6,8 +6,8 @@
         </span>
 
         <div class="text header-text">
-          <span class="name">User</span>
-          <span class="profession">user1</span>
+          <span class="name">{{$user->name}}</span>
+          <span class="profession">{{$user->l_name}}</span>
         </div>
       </div>
 
@@ -39,9 +39,9 @@
             </a>
           </li>
           <li class="nav link">
-            <a href="grupos.html">
+            <a href="{{route('usuarios')}}">
               <i class='bx bx-group icon'></i>
-              <span class="text nav-text">Grupos</span>
+              <span class="text nav-text">Usuarios</span>
             </a>
           </li>
           <li class="nav link">
@@ -51,7 +51,7 @@
             </a>
           </li>
           <li class="nav link">
-            <a href="{{route('config')}}">
+            <a href="{{ route('config') }}">
               <i class='bx bx-cog icon'></i>
               <span class="text nav-text">Configuración</span>
             </a>

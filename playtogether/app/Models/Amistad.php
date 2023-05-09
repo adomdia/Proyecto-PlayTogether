@@ -5,25 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\User;
 
-
-class Publicaciones extends Model
+class Amistad extends Model
 {
     use HasFactory;
+    protected $table = 'amistad';
 
-    protected $table = 'publicaciones';
+    protected $fillable = ['user_1', 'user_2'];
 
-    protected $fillable = ['titulo', 'descripcion', 'id_user', 'archivo', 'tipo'];
-
-    public function scopeBuscarpor($query, $tipo, $buscar) {
-        if ( ($tipo) && ($buscar) ) {
+    public function scopeBuscarpor($query, $buscar) {
+        if ( ($buscar) ) {
             return $query->where($user, 'like', "%$buscar");
         }
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->hasMany(User::class, 'id');
     }
-
 }
