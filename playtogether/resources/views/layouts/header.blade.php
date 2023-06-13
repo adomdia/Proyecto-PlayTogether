@@ -1,7 +1,7 @@
     <nav class="navbar fixed-top mb-5 cabecera">
         <div class="container-fluid justify-content-center d-flex align-items-sm-center mb-5">
             <picture class="logo">
-                <a href="{{ route('index') }}">
+                <a href="{{ route('home') }}">
                     <img src="{{asset('img/playtogether.png')}}" width="75px" height="75px" alt="logo">
                 </a>
             </picture>

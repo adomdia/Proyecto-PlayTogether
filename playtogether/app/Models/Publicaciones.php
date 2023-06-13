@@ -13,7 +13,7 @@ class Publicaciones extends Model
 
     protected $table = 'publicaciones';
 
-    protected $fillable = ['titulo', 'descripcion', 'id_user', 'archivo', 'tipo'];
+    protected $fillable = ['titulo', 'descripcion', 'id_user', 'archivo', 'tipo', 'nombre_user'];
 
     public function scopeBuscarpor($query, $tipo, $buscar) {
         if ( ($tipo) && ($buscar) ) {

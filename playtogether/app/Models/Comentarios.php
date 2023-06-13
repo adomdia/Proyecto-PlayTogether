@@ -12,7 +12,7 @@ class Comentarios extends Model
 
     protected $table = 'comentarios_publicaciones';
 
-    protected $fillable = ['id_user', 'id_publicacion', 'texto', 'user_name'];
+    protected $fillable = ['id_user', 'id_publicacion', 'texto', 'user_name', 'user_foto'];
 
     public function user()
     {

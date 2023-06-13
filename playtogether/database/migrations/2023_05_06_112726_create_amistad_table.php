@@ -15,13 +15,10 @@ return new class extends Migration
     {
         Schema::create('amistad', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('user_1')->constrained('users')
-                                        ->cascadeOnUpdate()
-                                        ->nullOnDelete();
-            $table->foreignId('user_2')->constrained('users')
-                                        ->cascadeOnUpdate()
-                                        ->nullOnDelete();
+            $table->string('user_1');
+            $table->string('user_2');
+            $table->string('nombre_user_1');
+            $table->string('nombre_user_2');
 
 
             $table->timestamps();

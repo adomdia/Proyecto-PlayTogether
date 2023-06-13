@@ -336,6 +336,7 @@ body.dark .menu-bar .mode i.moon{
     width: 44px;
     border-radius: 25px;
     background: var(--toggle-color);
+    left:8px;
 }
 
 .switch::before{

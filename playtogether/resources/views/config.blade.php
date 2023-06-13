@@ -1,10 +1,23 @@
 @extends('layouts.app')
+@section('last_head')
+<title>{{ config('app.name', 'Laravel') }} - Configuración  </title>
+@endsection
 @extends('layouts.navbar')
 
+
+
 @section('content')
+@if ($user->email === 'admin@playtogether.com')
+
+<div class="home">
+        <div class="titulo">
+          <h1 class="titulo_home">Por seguridad el usuario administrador no puede hacer cambios en su perfil</h1>
+        </div>
+</div>
+@else
 <input type="hidden" name="id" value="{{ $user->id }}">
 <div class="home">
-    <nav class="conf-bar" style="z-index:8">
+    <nav class="conf-bar" style="position:relative;z-index:8">
           <div class="conf-bar">
             <div class="conf">
               <ul class="conf-links">
@@ -21,7 +34,7 @@
                   </a>
                 </li>
                 <li class="nav link">
-                  <a href="#">
+                  <a href="{{ route('amigos') }}">
                     <i class='bx bx-lock icon' ></i>
                     <span class="text nav-text">Amigos</span>
                   </a>
@@ -32,9 +45,19 @@
         </nav>
         <div class="conf-form">
                     <form method="post" action="{{ route('modificaruser') }}" style="max-width: 60vw;
-                                                        margin-left: 10vw;">
+                                                        margin-left: 10vw;" enctype="multipart/form-data">
                         @csrf
+
                         <input type="hidden" name="id_user" value="{{ $user->id }}">
+
+                        <div class="formconfig mb-3" style="margin-left:15vw">
+                        <label for="Foto">
+                            Foto de perfil:
+                        </label>
+                        <input type="file" name="archivo" id="archivo" >
+                        </div>
+
+
 
                         <div class="formconfig mb-3" style="margin-left:15vw">
                             <label for="name" class=" form-label text-md-end">{{ __('Cambiar Nombre') }}</label>
@@ -74,4 +97,5 @@
                         </div>
                     </form>
                     <div class="row mb-3">
+@endif
 @endsection

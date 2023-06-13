@@ -558,3 +558,8 @@ body.dark .switch::before{
       margin-left: 0px;
     }
   }
+
+
+.titulo_home{
+  color: var(--sidebar-color);
+}

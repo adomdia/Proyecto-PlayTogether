@@ -65,11 +65,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $admin = User::get()->where('email', 'admin@playtogether.com')->first();
+
         return User::create([
             'name' => $data['name'],
             'l_name' => $data['l_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'foto' => $admin->foto,
         ]);
     }
 }

@@ -1,16 +1,18 @@
 @extends('layouts.app')
-
+@section('last_head')
+<title>{{ config('app.name', 'Laravel') }} - Bienvenido  </title>
+@endsection
 @section('content')
 <video class="video-inicio" src={{asset("/videos/fondologin.mp4")}} type="video/mp4" muted autoplay loop >
       </video>
-<div class="container   py-5" style="margin:150px auto">
+<div class="container   py-5" style="margin:150px auto; background-color: transparent">
     <div class="row w-75 position-absolute top-50 start-50 translate-middle formularios-log">
         <div class="col-md-6  mb-5">
             <div class="card">
                 <div class="card-header container-fluid justify-content-center d-flex align-items-sm-center" style="background-color: #2d2196; color: #fff" >{{ __('Registrarse') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" id="form_reg" action="{{ route('register') }}">
                         @csrf
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre') }}</label>
@@ -92,7 +94,7 @@
                 <div class="card-header container-fluid justify-content-center d-flex align-items-sm-center" style="background-color: #2d2196; color: #fff">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" id="form_log" action="{{ route('login') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -154,6 +156,77 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#form_reg').validate({
+        rules: {
+          nombre: {
+            required: true
+          },
+          apellido: {
+            required: true
+          },
+          correo: {
+            required: true,
+            email: true
+          },
+          contrasena: {
+            required: true,
+            minlength: 8
+          }
+        },
+        messages: {
+          nombre: {
+            required: 'Por favor, ingresa tu nombre.'
+          },
+          apellido: {
+            required: 'Por favor, ingresa tu apellido.'
+          },
+          correo: {
+            required: 'Por favor, ingresa tu correo electrónico.',
+            email: 'Por favor, ingresa un correo electrónico válido.'
+          },
+          contrasena: {
+            required: 'Por favor, ingresa tu contraseña.',
+            minlength: 'La contraseña debe tener al menos 8 caracteres.'
+          }
+        },
+        submitHandler: function(form) {
+          //alert('Formulario enviado exitosamente.');
+          form.submit();
+        }
+      });
+    });
 
+    $(document).ready(function() {
+      $('#form_log').validate({
+        rules: {
+          correo: {
+            required: true,
+            email: true
+          },
+          contrasena: {
+            required: true,
+            minlength: 8
+          }
+        },
+        messages: {
+          correo: {
+            required: 'Por favor, ingresa tu correo electrónico.',
+            email: 'Por favor, ingresa un correo electrónico válido.'
+          },
+          contrasena: {
+            required: 'Por favor, ingresa tu contraseña.',
+            minlength: 'La contraseña debe tener al menos 8 caracteres.'
+          }
+        },
+        submitHandler: function(form) {
+          form.submit();
+        }
+      });
+    });
+  </script>
 
 @endsection

@@ -1,11 +1,14 @@
 @extends('layouts.app')
+@section('last_head')
+<title>{{ config('app.name', 'Laravel') }} - Crear  </title>
+@endsection
 @extends('layouts.navbar')
 
 @section('content')
 <form action="{{ route('crearpublicacion') }}" method="post" enctype="multipart/form-data">
     @csrf
   <input type="hidden" name="id_user" value="{{ $user->id }}">
-  <div class="container border text-center" style="margin: 150px auto;
+  <div class="container border text-center formulario_creacion" style="margin: 150px auto;
           max-width: 400px;
           font-weight: 300;
           background-color: #fff;
@@ -35,7 +38,7 @@
           <label for="Foto">
               Archivo:
           </label>
-          <input type="file" name="archivo" id="archivo" require>
+          <input type="file" name="archivo" id="archivo" style="width:75%" require>
       </div>
       <button type="submit" class="btn btn-primary">Guardar</button>
   </div>

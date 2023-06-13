@@ -20,7 +20,7 @@ class AdministradorController extends Controller
 
 
 
-        return view('administrador.index', compact('user', 'usuarios'));
+        return view('index', compact('user', 'usuarios'));
 
     }
 }

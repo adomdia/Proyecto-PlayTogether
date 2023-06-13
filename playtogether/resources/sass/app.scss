@@ -653,7 +653,7 @@ body.dark .switch::before{
     position: relative;
     bottom: 17vh;
     margin-top: 50px;
-
+    color: var(--text2-color)
   }
   .config{
     position: relative;
@@ -909,9 +909,6 @@ dialog::backdrop{
   align-items: center;
 }
 
-.grupos img:hover {
-  filter: drop-shadow(0 -6mm 4mm #4444dd);
-}
 
 .grupos-thumb {
   max-width: 300px;
@@ -1011,10 +1008,6 @@ dialog::backdrop{
   width: 100%;
   height: 250px;
   overflow: hidden;
-}
-
-.clases img:hover{
-  filter: drop-shadow(0 -6mm 4mm #4444dd);
 }
 
 .clases-thumb {
@@ -1652,4 +1645,80 @@ dialog::backdrop{
 
     }
 
+  }
+
+  .titulo_home, .card-title{
+    color: var(--text2-color);
+  }
+  @media screen and (max-width: 412px){
+
+    /* CLASES */
+
+
+    .grupos{
+      left: 0px;
+      margin-left: 0px;
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .grupos-header{
+      position: relative;
+      top: 178px;
+      left: -269px;
+    }
+
+    .grupos-container{
+      padding: 0 1vw;
+    }
+
+    .grupos-card{
+      width: 314px;
+      height: 243px;
+    }
+
+    .grupos-thumb{
+      max-width: 260px;
+    }
+
+    .grupos-info p,
+    .grupos-info .button a{
+      display: none;
+    }
+
+
+
+
+    /* GUITARRA */
+
+    .clases{
+      padding-left: 0px;
+      margin-left: 4px;
+    }
+
+    .clases i.left{
+      left: 0px;
+      top: 490px;
+    }
+
+    .clases i.right{
+      right: 0px;
+      top: 490px;
+      padding-right: 0px;
+    }
+
+   }
+
+   @media screen and (max-width: 412px){
+    .foros{
+      width: 40%
+    }
+   }
+
+   @media screen and (max-width : 412px) {
+    .formulario_creacion{
+      width: 75%;
+  position: relative;
+  left: 11vw;
+    }
   }

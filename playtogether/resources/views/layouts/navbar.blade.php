@@ -2,7 +2,9 @@
     <header class="nav">
       <div class="image-text">
         <span class="image">
-          <img src="img/user0.jpg" alt="user">
+          <a href="{{route('perfil', $user->id)}}">
+          <img src="{{ asset('storage').'/'.$user->foto }}" alt="user">
+</a>
         </span>
 
         <div class="text header-text">
@@ -19,12 +21,6 @@
 
     <div class="menu-bar">
       <div class="menu">
-        <ul>
-        <li class="buscador">
-          <i class='bx bx-search icon'></i>
-          <input type="search" placeholder="Buscar...">
-        </li>
-      </ul>
         <ul class="menu-links">
           <li class="nav link">
             <a href="{{route('home')}}">
@@ -33,7 +29,7 @@
             </a>
           </li>
           <li class="nav link">
-            <a href="#">
+            <a href="{{route('mensajes')}}">
               <i class='bx bx-chat icon'></i>
               <span class="text nav-text">Mensajes</span>
             </a>
@@ -45,7 +41,7 @@
             </a>
           </li>
           <li class="nav link">
-            <a href="#">
+            <a href="{{route('contenido')}}">
               <i class='bx bx-store icon'></i>
               <span class="text nav-text">Mercadillo</span>
             </a>
@@ -79,10 +75,12 @@
             <i class="bx bx-moon icon moon"></i>
             <i class="bx bx-sun icon sun"></i>
           </div>
+
           <span class="mode-text text">Modo Oscuro</span>
 
+
           <div class="toggle-switch">
-            <span class="switch"></span>
+          <a href="{{ route('modo-oscuro') }}" style="text-decoration:none"><span class="switch"></span></a>
           </div>
         </li>
       </ul>

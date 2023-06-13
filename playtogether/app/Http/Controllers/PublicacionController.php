@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Publicaciones;
 use App\Models\User;
 use App\Models\Comentarios;
+use App\Models\Amistad;
 
 class PublicacionController extends Controller
 {
@@ -61,23 +62,36 @@ class PublicacionController extends Controller
             'descripcion' => 'max:1000 | required',
             ] );
 
+
+
         $datosPublicacion = request()->except('_token');
         if ($request->hasFile('archivo')){
 
+
             $request->archivo=$request->file('archivo')->store('uploads', 'public');
         }
+
+
+        $user = User::get()->where('id', $request->id_user)->first();
+
 
         Publicaciones::create(['tipo' => $request->tipo,
         'titulo' => $request->titulo,
         'descripcion' => $request->descripcion,
         'id_user' => $request->id_user,
-        'archivo' => $request->archivo]);
+        'archivo' => $request->archivo,
+        'nombre_user' => $user->name
+    ]);
+
+    $id = auth()->id();
+    $user = User::get()->where('id', $id)->first();
+    $amistad = Amistad::select('user_2')->where('user_1', $id)->pluck('user_2')->toArray();
+    $publicaciones = Publicaciones::whereIn('id_user', $amistad)->get();
+    $amigos = User::get()->whereIn('id', $amistad);
+    $cAmigos = User::get()->whereIn('id', $amistad)->count();
 
 
-        $id = auth()->user()->id;
-        $user = User::get()->where('id', $id)->first();
-
-        return view('home', compact('user'));
+    return view('home', compact('user', 'amigos', 'cAmigos', 'publicaciones'));
 
     }
         public function destroy(Request $request)

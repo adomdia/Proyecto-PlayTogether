@@ -653,6 +653,7 @@ body.dark .switch::before{
     position: relative;
     bottom: 17vh;
     margin-top: 50px;
+    color: var(--text2-color)
 
   }
   .config{
@@ -909,10 +910,6 @@ dialog::backdrop{
   align-items: center;
 }
 
-.grupos img:hover {
-  filter: drop-shadow(0 -6mm 4mm #4444dd);
-}
-
 .grupos-thumb {
   max-width: 300px;
   max-height: 300px;
@@ -1013,9 +1010,6 @@ dialog::backdrop{
   overflow: hidden;
 }
 
-.clases img:hover{
-  filter: drop-shadow(0 -6mm 4mm #4444dd);
-}
 
 .clases-thumb {
   width: 100%;
@@ -1637,4 +1631,13 @@ dialog::backdrop{
       left: 21vw;
     }
 
+
+
+    @media screen and (max-width : 412px) {
+      .formulario_creacion{
+        width: 75%;
+        position: relative;
+        left: 11vw;
+      }
+    }
   }

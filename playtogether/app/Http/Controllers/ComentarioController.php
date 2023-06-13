@@ -24,6 +24,7 @@ class ComentarioController extends Controller
 
         Comentarios::create(['id_user' => $request->id_user,
         'user_name' => $usuario->name,
+        'user_foto' => $usuario->foto,
         'id_publicacion' => $request->id_publicacion,
         'texto' => $request->texto]);
 
@@ -35,4 +36,19 @@ class ComentarioController extends Controller
 
         // return response()->json($datosPublicacion);
     }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->id;
+
+        $comentario=Comentarios::findOrFail($id);
+
+        Comentarios::destroy($id);
+
+        $id = auth()->user()->id;
+        $user = User::get()->where('id', $id)->first();
+
+        return redirect()->back();
+    }
+
 }

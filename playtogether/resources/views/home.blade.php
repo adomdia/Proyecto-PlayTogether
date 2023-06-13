@@ -1,22 +1,32 @@
 @extends('layouts.app')
+@section('last_head')
+<title>{{ config('app.name', 'Laravel') }} - Inicio  </title>
+@endsection
 @extends('layouts.navbar')
 
 @section('content')
 
-@if ($user->email === 'admin@admin.com')
+@if ($user->email === 'admin@playtogether.com')
 
 <div class="home">
         <div class="titulo">
-          <span class="text nav-text">Estás en la vista de administrador, pulsa el siguiente botón para continuar con la administración de la página.</span>
-          <div class="container-fluid justify-content-center d-flex align-items-sm-center">
-            <a href={{route('indexadministrar')}}><button class="btn-crear">Continuar</button></a>
-          </div>
+          <h1 class="titulo_home">Estás en la vista de administrador.</h1>
         </div>
 </div>
 
 
 @else
 <div class="home">
+  @if ($cAmigos == 0)
+
+        <div class="titulo">
+          <h1 class="titulo_home">¿Todavía no tienes ningún contacto?</h1>
+          <p><h3  class="titulo_home" >Conecta con otros usuarios de la plataforma</h3></p>
+        </div>
+        <div class="container-fluid justify-content-center d-flex align-items-sm-center">
+          <a href={{route('usuarios')}}><button class="btn-crear" style="width:150px">Ver usuarios</button></a>
+        </div>
+  @else
     <!--SLIDER INICIO-->
     <section class="fotos">
       <i class="bx bx-chevron-left arrow left"></i>
@@ -24,122 +34,62 @@
       <i class="bx bx-chevron-right arrow right"></i>
       <button class="nxt-btn"></button>
       <div class="fotos-container">
-        <div class="fotos-card">
-          <div class="fotos-image">
-            <a href="media/img/user1.jpg">
-              <picture>
-                <img src="img/user0.jpg" class="fotos-thumb" alt="user1">
-              </picture>
+        @foreach ($amigos as $amigo)
+         @foreach ($publicaciones as $publicacion)
+         @if ($publicacion->tipo == 'Foto')
+            <div class="fotos-card" style="height: 325px;">
+            <a href="{{route('publicaciones.show', $publicacion->id)}}">
+                <img src="{{ asset('storage').'/'.$publicacion->archivo }}" class="card-img-top" alt="imagenPublicacion">
             </a>
-          </div>
-          <div class="fotos-info">
-            <div class="fotos-header">
-              <h2 class="fotos-user">USER1 </h2>
-              <div class="fotos-icon">
-                <i class='bx bx-heart like'></i>
-                <i class='bx bx-comment-dots comment'></i>
+              <div class="card-body">
+              <a href="{{route('perfil', $publicacion->id_user)}}" style="text-decoration:none">
+                <h5 class="card-title" >{{$publicacion->nombre_user}}</h5>
+              </a>
+              <a href="{{route('publicaciones.show', $publicacion->id)}}" style="text-decoration:none">
+                <h5 class="card-title" >{{$publicacion->titulo}}</h5>
+                </a>
+                <p class="card-text"style="color:#fff">{{$publicacion->descripcion}}</p>
+                </div>
               </div>
-            </div>
-            <p class="fotos-short-description">ASASDASDASDASDASDASDAS</p>
-          </div>
-        </div>
-        <div class="fotos-card">
-          <div class="fotos-image">
-            <a href="media/img/user2.jpg">
-              <picture>
-                <img src="img/user0.jpg" class="fotos-thumb" alt="user2">
-              </picture>
-            </a>
-          </div>
-          <div class="fotos-info">
-            <div class="fotos-header">
-              <h2 class="fotos-user">USER2</h2>
-              <div class="fotos-icon">
-                <i class='bx bx-heart like'></i>
-                <i class='bx bx-comment-dots comment'></i>
+            @elseif ($publicacion->tipo == 'Video')
+            <div class="fotos-card" style="height: 375px;">
+            <video src="{{ asset('storage').'/'.$publicacion->archivo }}" type="video/mp4" class="fotos-thumb" alt="user1" width="320" height="240" style="height: 64%;" controls> </video>
+              <div class="card-body">
+              <a href="{{route('perfil', $publicacion->id_user)}}" style="text-decoration:none">
+                <h5 class="card-title" >{{$publicacion->nombre_user}}</h5>
+              </a>
+              <a href="{{route('publicaciones.show', $publicacion->id)}}" style="text-decoration:none">
+                <h5 class="card-title" >{{$publicacion->titulo}}</h5>
+                </a>
+                <p class="card-text"style="color:#fff">{{$publicacion->descripcion}}</p>
+                </div>
               </div>
-            </div>
-            <p class="fotos-short-description">ASASDASDASDASDASDASDAS</p>
-          </div>
-        </div>
-        <div class="fotos-card">
-          <div class="fotos-image">
-            <a href="media/img/user3.jpg">
-              <picture>
-                <img src="img/user0.jpg" class="fotos-thumb" alt="user3">
-              </picture>
-            </a>
-          </div>
-          <div class="fotos-info">
-            <div class="fotos-header">
-              <h2 class="fotos-user">USER3</h2>
-              <div class="fotos-icon">
-                <i class='bx bx-heart like'></i>
-                <i class='bx bx-comment-dots comment'></i>
+            @elseif($publicacion->tipo == 'Audio')
+            <div class="fotos-card" style="height: 300px;">
+                  <audio controls style="width:220px">
+                            <source src="{{ asset('storage').'/'.$publicacion->archivo }}" class="fotos-thumb" alt="user1">
+                  </audio>
+              <div class="card-body">
+                <a href="{{route('perfil', $publicacion->id_user)}}" style="text-decoration:none">
+                <h5 class="card-title" >{{$publicacion->nombre_user}}</h5>
+              </a>
+              <a href="{{route('publicaciones.show', $publicacion->id)}}" style="text-decoration:none">
+                <h5 class="card-title" >{{$publicacion->titulo}}</h5>
+                </a>
+                <p class="card-text" style="color:#fff">{{$publicacion->descripcion}}</p>
+
+                </div>
               </div>
-            </div>
-            <p class="fotos-short-description">ASASDASDASDASDASDASDAS</p>
-          </div>
-        </div>
-        <div class="fotos-card">
-          <div class="fotos-image">
-            <a href="media/img/user4.jpg">
-              <picture>
-                <img src="img/user0.jpg" class="fotos-thumb" alt="user4">
-              </picture>
-            </a>
-          </div>
-          <div class="fotos-info">
-            <div class="fotos-header">
-              <h2 class="fotos-user">USER4</h2>
-              <div class="fotos-icon">
-                <i class='bx bx-heart like'></i>
-                <i class='bx bx-comment-dots comment'></i>
-              </div>
-            </div>
-            <p class="fotos-short-description">ASASDASDASDASDASDASDAS</p>
-          </div>
-        </div>
-        <div class="fotos-card">
-          <div class="fotos-image">
-            <a href="media/img/user5.jpg">
-              <picture>
-                <img src="img/user0.jpg" class="fotos-thumb" alt="user5">
-              </picture>
-            </a>
-          </div>
-          <div class="fotos-info">
-            <div class="fotos-header">
-              <h2 class="fotos-user">USER5</h2>
-              <div class="fotos-icon">
-                <i class='bx bx-heart like'></i>
-                <i class='bx bx-comment-dots comment'></i>
-              </div>
-            </div>
-            <p class="fotos-short-description">ASASDASDASDASDASDASDAS</p>
-          </div>
-        </div>
-        <div class="fotos-card">
-          <div class="fotos-image">
-            <a href="media/img/user5.jpg">
-              <picture>
-                <img src="img/user0.jpg" class="fotos-thumb" alt="user5">
-              </picture>
-            </a>
-          </div>
-          <div class="fotos-info">
-            <div class="fotos-header">
-              <h2 class="fotos-user">USER5</h2>
-              <div class="fotos-icon">
-                <i class='bx bx-heart like'></i>
-                <i class='bx bx-comment-dots comment'></i>
-              </div>
-            </div>
-            <p class="fotos-short-description">ASASDASDASDASDASDASDAS</p>
-          </div>
-        </div>
+
+            @endif
+          @endforeach
+        @endforeach
       </div>
     </section>
+  @endif
+    <div class="titulo">
+          <h3 class="titulo_home">Comparte tus propias publicaciones</h3>
+    </div>
     <div class="container-fluid justify-content-center d-flex align-items-sm-center">
     <a href={{route('crear')}}><button class="btn-crear">Crear</button></a>
     </div>
